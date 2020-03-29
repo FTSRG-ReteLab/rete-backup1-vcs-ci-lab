@@ -9,14 +9,12 @@ import java.util.concurrent.TimeUnit;
 public class TrainControllerImpl implements TrainController {
 
 	private int step = 0;
-	private ScheduledExecutorService timeUnitCounter;
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 
 	public TrainControllerImpl(){
-		timeUnitCounter = Executors.newScheduledThreadPool(1);
+		ScheduledExecutorService timeUnitCounter = Executors.newScheduledThreadPool(1);
 		timeUnitCounter.scheduleAtFixedRate(this::followSpeed, 0, 1, TimeUnit.SECONDS);
-
 	}
 
 	@Override
@@ -32,6 +30,7 @@ public class TrainControllerImpl implements TrainController {
 		}
 		enforceSpeedLimit();
 	}
+
 
 	@Override
 	public int getReferenceSpeed() {
