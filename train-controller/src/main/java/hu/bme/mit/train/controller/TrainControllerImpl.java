@@ -2,11 +2,20 @@ package hu.bme.mit.train.controller;
 
 import hu.bme.mit.train.interfaces.TrainController;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class TrainControllerImpl implements TrainController {
 
 	private int step = 0;
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
+
+	public TrainControllerImpl(){
+		ScheduledExecutorService timeUnitCounter = Executors.newScheduledThreadPool(1);
+		timeUnitCounter.scheduleAtFixedRate(this::followSpeed, 0, 1, TimeUnit.SECONDS);
+	}
 
 	@Override
 	public void followSpeed() {
@@ -19,9 +28,9 @@ public class TrainControllerImpl implements TrainController {
 		        referenceSpeed = 0;
             }
 		}
-
 		enforceSpeedLimit();
 	}
+
 
 	@Override
 	public int getReferenceSpeed() {
@@ -43,7 +52,7 @@ public class TrainControllerImpl implements TrainController {
 
 	@Override
 	public void setJoystickPosition(int joystickPosition) {
-		this.step = joystickPosition;		
+		this.step = joystickPosition;
 	}
 
 }
