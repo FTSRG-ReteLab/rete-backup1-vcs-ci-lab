@@ -1,7 +1,14 @@
-subprojects {
-  apply plugin: 'java'
-
-  repositories {
-    jcenter()
-  }
+plugins {
+  id "org.sonarqube" version "2.6.2" apply false
 }
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+      jcenter()
+    }
+
+    apply plugin: 'org.sonarqube'
+
+    apply plugin: 'jacoco'
+  }
