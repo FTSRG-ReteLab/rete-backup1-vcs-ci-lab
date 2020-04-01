@@ -12,8 +12,8 @@ public class TrainControllerImpl implements TrainController {
 	private int speedLimit = 0;
 
 	public TrainControllerImpl() {
-		ScheduledExecutorService counter = Executors.newScheduledThreadPool(1);
-		counter.scheduleAtFixedRate(this::followSpeed, 0, 1, TimeUnit.SECONDS);
+		ScheduledExecutorService counterWithAVeryLongName = Executors.newScheduledThreadPool(1);
+		counterWithAVeryLongName.scheduleAtFixedRate(this::followSpeed, 0, 1, TimeUnit.SECONDS);
 	}
 	
 	@Override
